@@ -58,18 +58,50 @@ export const createBlog = asyncHandler(async (req, res) => {
 });
 
 export const getAllBlogs = asyncHandler(async (req, res) => {
-  const posts = await prisma.post.findMany({
-    include: {
-      user: true,
-      category: true,
-    },
-  });
+  const { category } = req.query;
 
-  if (!posts) {
+  let posts;
+
+  if (category && category !== "all") {
+    posts = await prisma.post.findMany({
+      where: {
+        category: {
+          some: {
+            name: category,
+          },
+        },
+      },
+      include: {
+        user: {
+          select: {
+            name: true,
+            email: true,
+            profileImage: true,
+          },
+        },
+        category: true,
+      },
+    });
+  } else {
+    posts = await prisma.post.findMany({
+      include: {
+        user: {
+          select: {
+            name: true,
+            email: true,
+            profileImage: true,
+          },
+        },
+        category: true,
+      },
+    });
+  }
+
+  if (posts.length === 0) {
     return res.status(404).json({ message: "No blogs found" });
   }
 
-  res.status(200).json({ message: "All blogs fetched successfully", posts });
+  res.status(200).json({ message: "Blogs fetched successfully", posts });
 });
 
 export const getSingleBlog = asyncHandler(async (req, res) => {
@@ -176,10 +208,21 @@ export const getlatestBlogs = asyncHandler(async (req, res) => {
       createdAt: "desc",
     },
     include: {
-      user: true,
+      user: {
+        select: {
+          name: true,
+          email: true,
+          profileImage: true,
+        },
+      },
       category: true,
     },
   });
+
+  if (!posts) {
+    return res.status(404).json({ message: "No blogs found" });
+  }
+
   res.status(200).json({ message: "Latest blogs fetched successfully", posts });
 });
 

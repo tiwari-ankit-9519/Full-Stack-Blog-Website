@@ -39,7 +39,7 @@ const PostCard = ({ title, category, blogImages, author, createdAt, id }) => {
         alt="poster"
         className="w-full h-60 rounded-tl-md rounded-tr-md"
       />
-      <div className="text-black bg-white flex flex-col gap-2 p-5 rounded-bl-md rounded-br-md">
+      <div className="text-black bg-white flex flex-col gap-2 px-5 rounded-bl-md rounded-br-md w-full h-40 ">
         <h3 className="text-2xl font-bold">{title}</h3>
         <p className="text-gray-600 font-medium">
           {category.map((c) => c.name)}

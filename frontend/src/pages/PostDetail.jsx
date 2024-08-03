@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import Loading from "../UI/Loading";
 import LeftSection from "../UI/LeftSection";
 import SearchBar from "../UI/SearchBar";
+import GetLatestBlogs from "../UI/GetLatestPost";
 
 const PostDetail = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ const PostDetail = () => {
           <LeftSection post={post} formattedDate={formattedDate} />
           <section className="w-full sm:w-full md:w-full lg:w-1/3 xl:w-1/3 p-2">
             <SearchBar />
+            <GetLatestBlogs />
           </section>
         </main>
       )}

@@ -19,7 +19,7 @@ router.get("/", getAllBlogs);
 router.get("/:id", getSingleBlog);
 router.put("/:id", isLoggedIn, updateBlog);
 router.delete("/:id", isLoggedIn, deleteBlog);
-router.get("/latest", getlatestBlogs);
+router.get("/post/latest", getlatestBlogs);
 router.get("/search/title", getBlogsUsingTitle);
 router.get("/filter/:category", searchBlogs);
 

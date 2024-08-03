@@ -9,8 +9,6 @@ import CreateBlog from "./pages/CreateBlog";
 import PostDetail from "./pages/PostDetail";
 
 const App = () => {
-  // const isAuthenticated = localStorage.getItem("token");
-
   return (
     <BrowserRouter>
       <Navbar />

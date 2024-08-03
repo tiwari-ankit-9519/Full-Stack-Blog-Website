@@ -71,9 +71,10 @@ const CreateBlog = () => {
     dispatch(createPost(data))
       .unwrap()
       .then((data) => {
+        console.log("Post ID:", data.id);
         showAlert("Blog created successfully!", "success");
         setTimeout(() => {
-          navigate(`/${data.payload.id}`);
+          navigate(`/posts/${data.id}`);
         }, 2000);
       })
       .catch((error) => {
