@@ -1,5 +1,3 @@
-import React from "react";
-
 const BlogCard = () => {
   return (
     <main className="dark:text-white">

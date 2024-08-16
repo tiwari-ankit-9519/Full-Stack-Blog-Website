@@ -1,5 +1,3 @@
-import React from "react";
-
 const Loader = () => {
   return (
     <div className="fixed inset-0 flex justify-center items-center bg-black z-[9999]">
